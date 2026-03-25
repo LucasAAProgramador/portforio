@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="theme-color" content="#6c5ce7">
+    <title>Lucas Alencar | Nvatoedits - Portfólio Profissional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5a4bcf;
+            --secondary: #a463f5;
+            --accent-1: #00d2d3;
+            --accent-2: #ff6b81;
+            --dark: #1e1e2f;
+            --darker: #151522;
+            --light: #f1f2f6;
+            --gray: #b2bec3;
+            --gradient-1: linear-gradient(135deg, #6c5ce7, #a463f5);
+            --gradient-2: linear-gradient(45deg, #00d2d3, #ff6b81);
+            --gradient-3: linear-gradient(90deg, #6c5ce7, #a463f5, #00d2d3);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-neon: 0 0 20px rgba(108, 92, 231, 0.5);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(108, 92, 231, 0.3);
+            border-top-color: var(--primary);
+            border-right-color: var(--accent-1);
+            border-bottom-color: var(--accent-2);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(30, 30, 47, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo span {
+            font-size: 0.8rem;
+            background: var(--gradient-2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        /* Menu Hamburger para Mobile */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(108, 92, 231, 0.2), transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 span {
+            background: var(--gradient-1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: var(--shadow-neon);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--primary);
+        }
+
+        /* Seções */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title span {
+            background: var(--gradient-1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-1);
+            border-radius: 3px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-photos {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .photo-main {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary);
+        }
+
+        .photo-main img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .photo-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .photo-thumb {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .photo-thumb img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .about-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .about-content h3 {
+            font-size: 1rem;
+            color: var(--accent-1);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-bio p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .about-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .info-item i {
+            color: var(--primary);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(108, 92, 231, 0.2);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            border: 1px solid var(--primary);
+        }
+
+        /* Seção de Vídeos - Upload Local */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.2);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+
+        .video-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .video-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .video-info p {
+            color: var(--gray);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Modal de Vídeo */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--darker);
+            border-radius: 20px;
+            position: relative;
+            border: 1px solid var(--primary);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+
+        .modal-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-info {
+            padding: 1.5rem;
+        }
+
+        .modal-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .modal-description {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .modal-description h3 {
+            color: var(--accent-1);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Seção de Designs */
+        .designs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .design-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .design-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .design-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .design-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .design-card:hover .design-overlay {
+            opacity: 1;
+        }
+
+        .design-overlay h3 {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .design-overlay p {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        /* Contato */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--light);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .contact-card:hover {
+            transform: translateX(5px);
+            border-color: var(--primary);
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-details h4 {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .contact-details p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--light);
+            font-size: 0.9rem;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .social-link i {
+            color: var(--primary);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+        }
+
+        footer {
+            background: var(--dark);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .footer-content p {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin: 0.3rem 0;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 0;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                text-align: left;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .designs-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        /* Área de Upload/Gerenciamento de Arquivos */
+        .file-manager {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border: 1px dashed var(--primary);
+        }
+
+        .file-manager h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .file-manager p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Botão de upload oculto */
+        .upload-area {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                LUCAS ALENCAR
+                <span>@nvatoedits</span>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Início</a>
+                <a href="#about">Sobre</a>
+                <a href="#videos">Vídeos</a>
+                <a href="#designs">Designs</a>
+                <a href="#contact">Contato</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>
+                        Olá soldado, eu sou
+                        <span>Nvato</span>
+                    </h1>
+                    <p class="hero-subtitle">Editor de Vídeo | Designer Gráfico | Desenvolvedor Web</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat" id="videoCount">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Vídeos</div>
+                        </div>
+                        <div class="stat" id="designCount">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Designs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Projetos Web</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="#videos" class="btn btn-primary">
+                            <i class="fas fa-play"></i>
+                            Ver Trabalhos
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-comment"></i>
+                            Contato
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <img id="profilePhoto" src="assets/foto-principal.jpg" alt="Lucas Alencar" onerror="this.src='img/nvato.png'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre <span>Mim</span></h2>
+            
+            <div class="about-grid">
+                <div class="about-photos">
+                    <div class="photo-main">
+                        <img id="aboutMainPhoto" src="img/ofnvato.png" alt="Lucas Alencar" onerror="this.src='https://via.placeholder.com/500x500/1e1e2f/6c5ce7?text=Foto+Principal'">
+                    </div>
+                    <div class="photo-thumbnails">
+                        <div class="photo-thumb">
+                            <img id="thumbPhoto1" src="img/silencio.png" alt="Perfil 1" onerror="this.src='https://via.placeholder.com/200x200/1e1e2f/6c5ce7?text=Perfil+1'">
+                        </div>
+                        <div class="photo-thumb">
+                            <img id="thumbPhoto2" src="img/affs.png" alt="Perfil 2" onerror="this.src='https://via.placeholder.com/200x200/1e1e2f/6c5ce7?text=Perfil+2'">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <h2>Nvato</h2>
+                    <h3>@nvatoedits</h3>
+                    
+                    <div class="about-bio">
+                        <p>🎯 Atualmente trabalho com marketing digital em uma barbearia, mas minha verdadeira paixão é criar conteúdo criativo e desenvolver soluções digitais inovadoras.</p>
+                        <p>🚀 Mesmo em busca de uma oportunidade formal, nunca paro de estudar e produzir. Meus edits já alcançaram milhares de visualizações, e meus designs são feitos com atenção única aos detalhes.</p>
+                        <p>💡 Acredito que criatividade e tecnologia andam juntas - cada projeto é uma chance de transformar ideias em realidade.</p>
+                    </div>
+
+                    <div class="about-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>São Paulo, SP</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Freelancer</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-video"></i>
+                            <span id="aboutVideoCount">0</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span id="aboutDesignCount">0</span>
+                        </div>
+                    </div>
+
+                    <div class="skills">
+                        <span class="skill-tag">Edição de Vídeo</span>
+                        <span class="skill-tag">Adobe Premiere</span>
+                        <span class="skill-tag">After Effects</span>
+                        <span class="skill-tag">Photoshop</span>
+                        <span class="skill-tag">HTML/CSS/JS</span>
+                        <span class="skill-tag">Motion Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section - COM SUPORTE PARA ARQUIVOS LOCAIS -->
+    <section id="videos">
+        <div class="container">
+            <h2 class="section-title">Meus <span>Vídeos</span></h2>
+            
+            <div class="videos-grid" id="videosGrid">
+                <!-- Vídeos serão inseridos via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Designs Section - COM SUPORTE PARA ARQUIVOS LOCAIS -->
+    <section id="designs">
+        <div class="container">
+            <h2 class="section-title">Meus <span>Designs</span></h2>
+            
+            <div class="designs-grid" id="designsGrid">
+                <!-- Designs serão inseridos via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Entre em <span>Contato</span></h2>
+            
+            <div class="contact-grid">
+                <div>
+                    <a href="https://wa.me/5511953511114" target="_blank" class="contact-card">
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="contact-details">
+                            <h4>WhatsApp</h4>
+                            <p>(11) 95351-1114</p>
+                        </div>
+                    </a>
+
+                    <a href="https://instagram.com/eylucas02" target="_blank" class="contact-card">
+                        <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+                        <div class="contact-details">
+                            <h4>Instagram</h4>
+                            <p>@eylucas02</p>
+                        </div>
+                    </a>
+
+                    <a href="https://linkedin.com/in/lucasalencar1001/" target="_blank" class="contact-card">
+                        <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                        <div class="contact-details">
+                            <h4>LinkedIn</h4>
+                            <p>/in/lucasalencar1001</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div>
+                    <a href="https://github.com/LucasAAProgramador" target="_blank" class="contact-card">
+                        <div class="contact-icon"><i class="fab fa-github"></i></div>
+                        <div class="contact-details">
+                            <h4>GitHub</h4>
+                            <p>@LucasAAProgramador</p>
+                        </div>
+                    </a>
+
+                    <a href="https://infojobs.com.br/Candidate/CV/" target="_blank" class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="contact-details">
+                            <h4>InfoJobs</h4>
+                            <p>Meu Currículo</p>
+                        </div>
+                    </a>
+
+                    <div class="social-links">
+                        <a href="https://tiktok.com/@nvatoedits" target="_blank" class="social-link">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
+                        <a href="https://www.youtube.com/@Nvatoedits" target="_blank" class="social-link">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeVideoModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-video" id="modalVideoContainer">
+                <video id="modalVideo" controls></video>
+            </div>
+            <div class="modal-info">
+                <h2 id="modalTitle"></h2>
+                <div class="modal-description">
+                    <h3>🎯 Por que fiz este vídeo</h3>
+                    <p id="modalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5511953511114" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2026 Lucas Alencar - @nvatoedits</p>
+                <p>Desenvolvido com <i class="fas fa-heart" style="color: #ff6b81;"></i> por Lucas Alencar</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== CONFIGURAÇÃO DOS SEUS VÍDEOS LOCAIS ====================
+        // COLOQUE SEUS VÍDEOS NA PASTA "videos" E ATUALIZE ESTE ARRAY
+        
+        const meusVideos = [
+            {
+                id: 1,
+                titulo: "Meu Primeiro Edit - Yuri Alberto",
+                descricao: "Este foi meu primeiro vídeo editado por diversão. Usei técnicas simples de tradução, transição e sincronia musical.",
+                motivo: "Queria mostrar minha forma como editor e uma forma de trabalho.",
+                arquivo: "video/primeira edit.mp4",  // Nome do arquivo na pasta videos
+                thumbnail: "img/yuri alberto.png", // Imagem de capa na pasta thumbnails
+                duracao: "01:51"
+            },
+            {
+                id: 2,
+                titulo: "Primeira edição viral - Vinland Saga",
+                descricao: "Video mais profissional para o tiktok e recostrução da forma de pensar.",
+                motivo: "Queria mostrar a beleza real de Vinland Saga emocionante.",
+                arquivo: "video/real love me.mp4",
+                thumbnail: "img/thorfinn.png",
+                duracao: "00:59"
+            },
+            {
+                id: 3,
+                titulo: "Edit para pegar na alma - Aoashi",
+                descricao: "Video com uma musica viral para pegar na alma.",
+                motivo: "A estética do video é mostrar a obra de arte do anime aoashi mostrando esse lado triste do anime.",
+                arquivo: "video/aoashi.mp4",
+                thumbnail: "img/aoashi.png",
+                duracao: "00:50"
+            },
+            {
+                id: 4,
+                titulo: "Edit trend - Vinland Saga",
+                descricao: "Trabalho feito para uma trend viral do tiktok.",
+                motivo: "Mostrar uma edição engraçada e chamativo para os seguidores do tiktok.",
+                arquivo: "video/navtovideo.mp4",
+                thumbnail: "img/askellad.png",
+                duracao: "00:23"
+            },
+            {
+                id: 5,
+                titulo: "Formato diferente - Gojo Satoru",
+                descricao: "Uma forma diferente de editar que normalmente faço!",
+                motivo: "Provar que com dedicação e criatividade é possível alcançar grandes resultados de video.",
+                arquivo: "video/gojo.mp4",
+                thumbnail: "img/gojo.png",
+                duracao: "00:19"
+            }
+            
+        ];
+
+        // ==================== CONFIGURAÇÃO DOS SEUS DESIGNS LOCAIS ====================
+        // COLOQUE SUAS IMAGENS NA PASTA "designs" E ATUALIZE ESTE ARRAY
+        
+        const meusDesigns = [
+            {
+                id: 1,
+                titulo: "Arte para Hamburgueria",
+                descricao: "Post para Instagram",
+                arquivo: "img/Cópia de Estilo que valoriza você.png"
+            },
+            {
+                id: 2,
+                titulo: "Arte para Hamburgueria 2",
+                descricao: "Post para Instagram",
+                arquivo: "img/Cópia de Folheto Estúdio de Pilates Azul e Branco.png"
+            },
+            {
+                id: 3,
+                titulo: "Arte para Hamburgueria 3",
+                descricao: "Post para Instagram",
+                arquivo: "img/Anton (1).png"
+            },
+            {
+                id: 4,
+                titulo: "Loja de Bicicletas",
+                descricao: "post para redes sociais",
+                arquivo: "img/Dia mundial da bicicleta  post instagram marrom e branco.png"
+            },
+            {
+                id: 5,
+                titulo: "Arte para jogadores ou atletas",
+                descricao: "post para redes sociais",
+                arquivo: "img/Inserir um título.png"
+            },
+            {
+                id: 6,
+                titulo: "Arte Barbearia",
+                descricao: "post instagram",
+                arquivo: "img/Enloqueceu.png"
+            }
+        ];
+
+        // ==================== FUNÇÕES DO SITE ====================
+        
+        // Popular vídeos
+        function populateVideos() {
+            const grid = document.getElementById('videosGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            meusVideos.forEach((video, index) => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.onclick = () => openVideoModal(index);
+                
+                // Verifica se a thumbnail existe, senão usa placeholder
+                const thumbSrc = video.thumbnail;
+                
+                card.innerHTML = `
+                    <div class="video-thumbnail">
+                        <img src="${thumbSrc}" alt="${video.titulo}" onerror="this.src='https://via.placeholder.com/400x225/1e1e2f/6c5ce7?text=${encodeURIComponent(video.titulo)}'">
+                        <div class="video-overlay">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>${video.titulo}</h3>
+                        <p>${video.descricao.substring(0, 80)}${video.descricao.length > 80 ? '...' : ''}</p>
+                        <div class="video-meta" style="margin-top: 8px; font-size: 0.75rem; color: var(--gray);">
+                            <span><i class="fas fa-clock"></i> ${video.duracao}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            
+            // Atualizar contadores
+            document.getElementById('videoCount').querySelector('.stat-number').textContent = meusVideos.length;
+            document.getElementById('aboutVideoCount').textContent = `${meusVideos.length}+ vídeos`;
+        }
+        
+        // Popular designs
+        function populateDesigns() {
+            const grid = document.getElementById('designsGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            meusDesigns.forEach(design => {
+                const card = document.createElement('div');
+                card.className = 'design-card';
+                card.innerHTML = `
+                    <img src="${design.arquivo}" alt="${design.titulo}" onerror="this.src='https://via.placeholder.com/400x400/1e1e2f/6c5ce7?text=${encodeURIComponent(design.titulo)}'">
+                    <div class="design-overlay">
+                        <h3>${design.titulo}</h3>
+                        <p>${design.descricao}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            
+            // Atualizar contadores
+            document.getElementById('designCount').querySelector('.stat-number').textContent = meusDesigns.length;
+            document.getElementById('aboutDesignCount').textContent = `${meusDesigns.length}+ designs`;
+        }
+        
+        // Abrir modal de vídeo
+        function openVideoModal(index) {
+            const video = meusVideos[index];
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            
+            modalVideo.src = video.arquivo;
+            modalTitle.textContent = video.titulo;
+            modalDescription.textContent = video.motivo || video.descricao;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            modalVideo.play();
+        }
+        
+        // Fechar modal de vídeo
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            
+            modal.classList.remove('active');
+            modalVideo.pause();
+            modalVideo.src = '';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Menu mobile
+        function initMobileMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        }
+        
+        // Smooth scroll
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Fechar menu mobile se estiver aberto
+                        const navLinks = document.getElementById('navLinks');
+                        if (navLinks && navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Header scroll effect
+        function initHeaderScroll() {
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(30, 30, 47, 0.98)';
+                } else {
+                    header.style.background = 'rgba(30, 30, 47, 0.95)';
+                }
+            });
+        }
+        
+        // Loading screen
+        function initLoading() {
+            // Timeout para forçar desaparecimento da tela de carregamento
+            setTimeout(() => {
+                const loading = document.getElementById('loading');
+                if (loading) {
+                    loading.style.opacity = '0';
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 500);
+                }
+            }, 800);
+            
+            // Também remove quando a página carregar completamente
+            window.addEventListener('load', function() {
+                const loading = document.getElementById('loading');
+                if (loading && loading.style.display !== 'none') {
+                    loading.style.opacity = '0';
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 500);
+                }
+            });
+        }
+        
+        // Fechar modal com ESC
+        function initModalEvents() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeVideoModal();
+                }
+            });
+            
+            const modal = document.getElementById('videoModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeVideoModal();
+                    }
+                });
+            }
+        }
+        
+        // Inicializar tudo
+        document.addEventListener('DOMContentLoaded', () => {
+            populateVideos();
+            populateDesigns();
+            initMobileMenu();
+            initSmoothScroll();
+            initHeaderScroll();
+            initLoading();
+            initModalEvents();
+        });
+        
+        // Instruções no console
+        console.log('📁 Para adicionar seus vídeos:');
+        console.log('1. Crie uma pasta "videos" na mesma pasta do site');
+        console.log('2. Coloque seus vídeos (.mp4, .webm) dentro da pasta');
+        console.log('3. Crie uma pasta "thumbnails" para as capas dos vídeos');
+        console.log('4. Crie uma pasta "designs" para suas imagens');
+        console.log('5. Atualize os arrays "meusVideos" e "meusDesigns" no JavaScript');
+        console.log('');
+        console.log('🎬 Exemplo de estrutura de pastas:');
+        console.log('📁 seu-site/');
+        console.log('  📁 video/');
+        console.log('    📄 meu-video-1.mp4');
+        console.log('    📄 meu-video-2.mp4');
+        console.log('  📁 thumbnails/');
+        console.log('    📄 thumb-1.jpg');
+        console.log('    📄 thumb-2.jpg');
+        console.log('  📁 img/');
+        console.log('    📄 design-1.jpg');
+        console.log('    📄 design-2.jpg');
+        console.log('  📄 index.html');
+    </script>
+</body>
+</html>
